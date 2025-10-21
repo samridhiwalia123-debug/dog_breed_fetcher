@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) throws BreedFetcher.BreedNotFoundException {
+    public static void main(String[] args) {
         String breed = "hound";
         BreedFetcher breedFetcher = new CachingBreedFetcher(new BreedFetcherForLocalTesting());
         int result = getNumberOfSubBreeds(breed, breedFetcher);
@@ -14,7 +14,6 @@ public class Main {
         result = getNumberOfSubBreeds(breed, breedFetcher);
         System.out.println(breed + " has " + result + " sub breeds");
     }
-
     /**
      * Return the number of sub breeds that the given dog breed has according to the
      * provided fetcher.
@@ -28,7 +27,6 @@ public class Main {
             List<String> subBreeds = breedFetcher.getSubBreeds(breed);
             return subBreeds.size();
         } catch (BreedFetcher.BreedNotFoundException e) {
-            // If breed is invalid, return 0 as per JavaDoc
             return 0;
         }
     }
